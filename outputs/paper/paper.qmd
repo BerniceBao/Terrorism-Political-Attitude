@@ -36,7 +36,7 @@ bibliography: references.bib
 # install.packages("pBrackets") # pBrackets_1.0  
 # install.packages("dplyr") 
 # install.packages("tidyverse")
-# install.packages("list)
+# install.packages("list")
 # install.packages("knitr")
 # install.packages("kableExtra")
 
@@ -250,9 +250,15 @@ s_tot %>%
   theme(plot.title = element_text(face = "bold"))
 ```
 
+
+
+
+
+
+
 ```{r}
 #| label: fig-collection
-#| fig-cap: "00000000000000000000000000000000000000000000000000000000000000000000000000"
+#| fig-cap: "Panel A displays the number of unique studies conducted over time, Panel B the number of manuscripts published over time, Panel C the frequency of used terrorism measures (in percentage), and Panel D the frequency of studied types of terrorism (in percentage)"
 #| echo: false
 #| message: false
 #| warning: false
@@ -424,193 +430,16 @@ ggarrange(StudyYear, PubYear,
 dev.off() #safe picture in high resolution.
 ```
 
-
-```{r}
-#| label: fig-collection
-#| fig-cap: "000000000000000000000000000000000000000000000000000000000000"
-#| echo: false
-#| message: false
-#| warning: false
+As depicted in @fig-collection(A) and (B), scholarly interest in exploring the link between terrorism and public attitudes notably began following the 9/11 attacks, and received further impetus following the 2015–16 Islamic State (IS) attacks. Put differently, the figures imply that this research domain is significantly influenced by specific events.
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ # 
-######## B. META-ANALYSIS: for each of the hypotheses ######## 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ # 
+Moreover, from 1985 to 2020, researchers have employed diverse methodologies to measure exposure to terrorism (refer to @fig-collection(C)). Some studies exposed participants to news articles or video clips depicting specific acts of violence (e.g., 9/11), while in other cases, exposure occurred naturally when surveys coincided with terror attacks (527 data points of acts of violence , as 30% ). Additionally, studies have assessed or manipulated individuals' perceptions of terrorism threats (threat of violence: 520 data points as 30%), examined affective responses such as fear (146 data points) and anger (111 data points), and investigated self-reported exposure to terrorism through personal experiences, relatives' experiences, or media coverage (self-reported exposure: 184 data points).
 
-# Data preparation: Split dataset in 3 based on outcome type
-# 1) outgroup dataset
-dat_outgroup <- dat[dat$PA_Category == 10 |
-                      dat$PA_Category == 99, ]
-length(unique(dat_outgroup$ID_R))#number of manuscripts (N_j)
-# 2) conservative shift dataset
-dat_conservatism <- dat[dat$PA_Category == 5 |
-                          dat$PA_Category == 6 |
-                          dat$PA_Category == 7 |
-                          dat$PA_Category == 8 |
-                          dat$PA_Category == 9 |
-                          dat$PA_Category == 11, ]
-length(unique(dat_conservatism$ID_R))#number of manuscripts (N_j)
-# 3) rally-around-the-flag dataset
-dat_rally <- dat[dat$PA_Category == 1 |
-                   dat$PA_Category == 2 |
-                   dat$PA_Category == 3 |
-                   dat$PA_Category == 4, ]
-length(unique(dat_rally$ID_R))#number of manuscripts (N_j)
-# double check (total number of effect sizes; N_k)
-count(dat_outgroup) + count(dat_conservatism) + count(dat_rally)
+The most frequently studied acts of violence are—perhaps unsurprisingly—9/11, the Israeli-Palestinian conflict, and the 2015 series of IS attacks in Paris. Consequently, regarding the ideology behind the violence (@fig-collection(D)), the vast majority of effect sizes quantify the effects of or relationship with Islamist terrorism (1,064 data points, 61%), following by no ideology terrorism, whereas the share of information on how the public reacts to extreme-right terror is remarkably low (35 data points, 2%).
 
 
-##### 1. Fit empty 3-level model using the meta3 function #####
+Table 1 demonstrates that...
 
-### To replicate Table 2: call summary() function for each of outcome cluster
-      ## coef(model...)[1] = Fishers' Z correlation coefficients (Zr)
-### To replicate the correlation coefficients mentioned in the text, 
-### call the FisherZinv() function for each outcome cluster.
-
-# Outgroup hostility (Table 2)
-set.seed(1234)
-model_og_LBCI <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                       data = dat_outgroup, 
-                       I2=c("I2q", "ICC"),
-                       intervals.type = "LB",
-                       model.name = "3 level outgroup LB")
-summary(model_og_LBCI)#results presented in Table 2, as well as
-#throughout the Supplementary Information (esp. Table B.3).
-FisherZInv(coef(model_og_LBCI)[1])#rho reported in text
-
-
-# Conservative shift (Table 2)
-set.seed(1234)
-model_cs_LBCI <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                       data = dat_conservatism, 
-                       I2=c("I2q", "ICC"),
-                       intervals.type = "LB",
-                       model.name = "3 level conservatism LB")
-summary(model_cs_LBCI)#results presented in Table 2, as well as
-#throughout the Supplementary Information (esp. Table B.3).
-FisherZInv(coef(model_cs_LBCI)[1])#rho reported in text
-
-
-# Rally-around-the-flag (Table 2)
-set.seed(1234)
-model_rf_LBCI <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                       data = dat_rally, 
-                       I2=c("I2q", "ICC"),
-                       intervals.type = "LB",
-                       model.name = "3 level rally LB")
-summary(model_rf_LBCI)#results presented in Table 2, as well as
-#throughout the Supplementary Information (esp. Table B.3).
-FisherZInv(coef(model_rf_LBCI)[1])#rho reported in text
-
-
-## Substantive interpretation --------------------------------------------------
-## i.e., comparison to 2016 ANES Feeling Thermometers
-anes2016 <- read_dta(file = "/cloud/project/raw/data/anes_timeseries_2016.dta")
-#select variables to summarize
-anes2016 <- anes2016 %>%
-  select(immterm = V162313, 
-         reptherm = V161096) 
-#format(round(psych::describe(anes2016),3), nsmall=3): counts NA's
-#recode NA's (!)
-anes2016$immterm <- ifelse(anes2016$immterm %in% -9:-1, NA, 
-                           identity(anes2016$immterm)) 
-anes2016$reptherm <- ifelse(anes2016$reptherm %in% -99:-1, NA, 
-                            identity(anes2016$reptherm))
-#find correct SDs to use in calculations based on Paluck et al. (2021)
-format(round(psych::describe(anes2016),3), nsmall=3) 
-#the effect of terror on the feeling therm. toward immigrants. 6.9
-cohens_d(r = FisherZInv(coef(model_og_LBCI)[1]))*27.285 
-#the effect of terror on the feeling therm. toward Rep. party: 7.2
-cohens_d(r = FisherZInv(coef(model_cs_LBCI)[1]))*27.330 
-
-
-## Practical implication -------------------------------------------------------
-## i.e., what sample size is recommended based on this meta-analysis?
-# Outgroup hostility
-pwr.r.test(r = FisherZInv(coef(model_og_LBCI)[1]), sig.level = 0.05, power = 0.8) 
-# Conservative shift
-pwr.r.test(r = FisherZInv(coef(model_cs_LBCI)[1]), sig.level = 0.05, power = 0.8) 
-# Rally-around-the-flag
-pwr.r.test(r = FisherZInv(coef(model_rf_LBCI)[1]), sig.level = 0.05, power = 0.8) 
-
-
-
-##### 2. Test variance components #####
-
-### Note: These results are briefly mentioned in footnote 13, but 
-### full results are discussed and presented in SI B.2.3.
-
-# Outgroup hostility
-
-#tau^2_3=0 (reported in Table B.2)
-set.seed(1234)
-model_og_t3 <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                      data = dat_outgroup, 
-                      RE3.constraints = 0, # constraining between-study level
-                      model.name = "Tau2_3 eq 0",
-                      intervals.type = "LB")
-summary(model_og_t3)#this equals a conventional random-effects model
-anova(model_og_LBCI, model_og_t3)
-
-#tau^2_2=0 (reported in Table B.2)
-set.seed(1234)
-model_og_t2 <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                     data = dat_outgroup,
-                     RE2.constraints = 0, # constraining within-study level
-                     model.name = "Tau2_2 eq 0",
-                     intervals.type = "LB")
-summary(model_og_t2)
-anova(model_og_LBCI, model_og_t2)
-
-
-# Conservative shift
-
-#tau^2_3=0 (reported in Table B.2)
-set.seed(1234)
-model_cs_t3 <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                     data = dat_conservatism, 
-                     RE3.constraints = 0, # constraining between-study level
-                     model.name = "Tau2_3 eq 0",
-                     intervals.type = "LB")
-summary(model_cs_t3)
-anova(model_cs_LBCI, model_cs_t3)
-
-#tau^2_2=0 (reported in Table B.2)
-set.seed(1234)
-model_cs_t2 <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                     data = dat_conservatism,
-                     RE2.constraints = 0, # constraining within-study level
-                     model.name = "Tau2_2 eq 0",
-                     intervals.type = "LB")
-summary(model_cs_t2)
-anova(model_cs_LBCI, model_cs_t2)
-
-
-# Rally-around-the-flag
-
-#tau^2_3=0 (reported in Table B.2)
-set.seed(1234)
-model_rf_t3 <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                     data = dat_rally, 
-                     RE3.constraints = 0, # constraining between-study level
-                     model.name = "Tau2_3 eq 0",
-                     intervals.type = "LB")
-summary(model_rf_t3)
-anova(model_rf_LBCI, model_rf_t3)
-
-#tau^2_2=0 (reported in Table B.2)
-set.seed(1234)
-model_rf_t2 <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
-                     data = dat_rally,
-                     RE2.constraints = 0, # constraining within-study level
-                     model.name = "Tau2_2 eq 0",
-                     intervals.type = "LB")
-summary(model_rf_t2)
-anova(model_rf_LBCI, model_rf_t2)
-
-
-
-```
 
 
 
