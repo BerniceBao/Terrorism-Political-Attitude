@@ -9,9 +9,9 @@
 
 The repo is structured as:
 
--   `data` contains the raw data as obtained from X, and the cleaned dataset that was constructed.
--   `output/paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. 
--   `script` contains the R scripts used to simulate, download and clean data.
+-   `inputs/data` contains the raw data as obtained from [X](https://doi.org/10.7910/DVN/K4L5YI), and the cleaned dataset that was constructed.
+-   `outputs/paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. 
+-   `scripts` contains the R scripts used to simulate, download and clean data.
 
 
 ## Statement on LLM usage
