@@ -1,8 +1,8 @@
 ---
-title: "Harmful Anti-Foreign Sentiments based on Concern for Competition Should be Recognized and Addressed"
-author: "Jayden Jung, Finn Korol, Sofia Sellitto"
-thanks: "Code and data are available at: https://github.com/jj-andj/mate-comp-hate ; Replication on Social Science Reproduction platform available at: https://doi.org/10.48152/ssrp-qg85-cb34"
-date: "February 17, 2023"
+title: "Start with the literature: assessthe empirical evidence for the relationship between ter-rorism and political attitudes"
+author: "Bernice(Yixuan) Bao, Zheng(Zeb) Yang, Jingcheng Yang"
+thanks: "Code and data are available at: https://github.com/BerniceBao/Terrorism-Political-Attitude ; Replication on Social Science Reproduction platform available at: https://doi.org/10.48152/ssrp-qg85-cb34"
+date: "February 13, 2024"
 date-format: long
 format: 
   pdf: 
@@ -118,6 +118,8 @@ In order to better present our replication of the results, The following are mea
 # Statistical Analysis
 
 In this paper we will replicate figure 2 and table2 of the orginal paper. Fortunately, the author has already compressed all the analysis into one coding file. We selected the corresponding part for each illustration. In terms of the analysis method, Pearson's correlation coefficient is used. According to the orignal paper, the manuscripts of the data they collected used various statistical method. For comparison purposes, each association is converted into a Pearson's correlation coefficient with the sampling variance. The author stressed that to "meaningfully compare and pool effect sizes, all correlations must also reflect the relation between terrorism and sociopolitical attitudes in the same direction."
+
+
 # Results
 
 
