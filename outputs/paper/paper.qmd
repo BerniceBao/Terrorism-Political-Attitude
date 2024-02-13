@@ -71,258 +71,55 @@ We begin our paper with a discussion of the data source, the methodologies emplo
 
 ## Source
 
-The paper used for replication is from the American Journal of Political Science which follows a discussion on the correlation of perceived mate competition and its contributions to anti-refugee sentiments and higher crime rates in Germany [@main_paper]. Our reproduction seeks to address two findings made from the original paper and apply a Canadian facing lens. 
+In this paper we aim to replicate part of the results from the "How Terrorism Does (and Does Not) Affect Citizens’ Political Attitudes: A Meta-Analysis." In the original paper, the author Godefroidt explored the correlation between terrorism and outgroup hostility and conservatism. Furthermore, the author also included more complicated models and even an shinny app for interactive viewing. Due to various restraints, we are going the test the major finding of the original paper.
 
-Their two claims are as follows: (1) Are non-immigrant German men who live in municipalities with excess male populations more likely to perceive refugees as threats? (2) Are non-immigrant German men who perceive mate competition more likely to support violence as the only means to gain the attention of German politicians? 
-
+In summary, the major claims(also what we are gong to replicate ) of the original paper are:
+1.To what extend do terrorism arose public sentiment towards outgroup hostility, and a conservative shift. 
+2.To what extend do the last claim hold, if being placed across different contexts.How such differences in observed effect sizes explained by additional moderators?
 
 ## Methodology
 
-This paper will replicate the survey data that was originally collected for the [-@main_paper] paper by Dancygier, Egami, Jamal, and Rischkes, as previously mentioned. Using the online survey platform "Respondi", they conduct 4 waves of surveys which spanned from September 2016 to December 2017 [@main_paper]. The researchers suggest that the anonymity provided by the online survey platform resulted in respondents answering more truthfully. [@main_paper]. To mitigate potential biases, the researchers employed list experiments in Waves 1 and 2, and in Wave 2, they randomly assigned 50% of the sample to either a control or treatment group. The treatment group was exposed to statements concerning their agreement with using violence against refugees as a means to get the attention of German politicians. However, no evidence was found to suggest that respondents were concealing their support for hate crimes when comparing the means of the control and treatment groups [@main_paper].
+The original paper obtained its data from database that contains 12333 records. The data was collected throug three steps, electronic search, screening related paper, and public survey. After the filtering, 10,391 records were included for further reviewing. In the [figure 1], the author used a flow chart to illustrate the collecting and cleaning process. The collected data from six sources ranging from 'web of science,' to 'personal contact.' After preliminary filtering, additional 9444 records were removed due to the nature of these information are news articles and policy briefing. The inclusion of these information may ditch the reliability of the analysis. Eventually 241 pieces were retained. They were then used for data processing, a total of 1733 total associations were generated. 
 
 ## Features
 
-The original survey data assessed participants on 53 variables, being representative of gender, age and state. The range of recorded age data from the survey occurs from 19-89 years old. Age was then categorized by group which is as follows: 18-29, 30-39, 30-49, 50-59, and 60 and older. Both male and female participants took part in the survey, but females were only involved in Waves 2 and 4 of surveys. The survey was distributed across 16 German states. Our reproduction, however, included removing variables that were not utilized in our final reproduction analysis and included only the necessary Waves 2 and 4. As a part of our reproduction, we also simplified the names of variables to make them easier to work with. From the original survey data, each variable correlates with a survey question asked to participants. To discuss the variables used in our reproduction we have grouped them by category way and have listed each variable below. Some survey questions are presented, and have been reworded slightly for consistency and clarity.
+Those associations or processed data are stored in the file metaanalysis-data.xlsx. It contains 76 column and 1733 observations. A randomized selection of manuscripts (±15% of the total sample) was used to pilot the code book and make any necessary revisions. The columns can be divided into fifth major data categories. The first part of the variables are identity information of the data such as the author name, year of the study, the sample size and the general population. The second part is the political tendency and people's ethnicity with variables ranging from the percentage of people identifying as a liberal and mean to the white-muslims percentage. The third portion records the detail of each terrorist attack, including the type, date, casualties. The forth part records a series of political attitudes. For example, nationalism and institutional trust, socio-economic conservatism, support for policies that pertains an outgroup. The last part lists the analysis technical data that will be used in meta-analysis code such as Fisher's Z correlation, Regression and so on. From the original survey data, each variable correlates with a survey question asked to participants. In our reproduction, we excluded data that being used for figure3 and figure4 the moderator test. We also made some minor changes and removed insignificant data for clearer replication and viewing. 
 
-[Socio-demographics]{.underline}
+In order to better present our replication of the results, The following are measurments of public political opinions provided by the author. They are classfied into 4 categories given in the orignal paper. We selected some important measures 
 
--   Age Group
--   Gender
--   State
--   German Citizen
--   Marital Status
--   Relationship status, single
--   Religious Affiliation
--   Education
--   Occupation
--   Income
--   Household Size
--   Subjective Social Status
--   Excess males: The proportion of males to females by states by dividing the number of women by men aged 14 and 44 for each municipality 
--   Politics: left and right-leaning
--   Politics: affiliated parties
+[Objective exposure]{.underline}
 
-[Mate Competition: using a scale (1-4) to indicate agreement or disagreement]{.underline}
+-   Pre postattack measures
+-   Days between an act of violence and survey day
+-   Newspaper vignette about an act of violence
+-   News clip about an act of violence
 
--   The influx of male refugees make it difficult for non-immigrant German men to find female partners
+[Self-reported exposre]{.underline}
 
-[Job Competition: using a scale of agree or disagree]{.underline}
+-   Direct exposure to terrorism
+-   Indirect exposure via friends and family
+-   Indirect exposure via media reports
 
--   The inflow of young male refugees makes it more difficult for young non-immigrant German men to find work/ jobs
+[Cognitions]{.underline}
 
-[Life Satisfaction: scale of 0-10]{.underline}
+-   Self-reported concern/worry for an attack on the nation
+-   Self-reported concern/worry to become a victim of terrorism
+-   Self-reported concern/worry for an attack on the nation
+-   Manipulated vignette or writing task about the threat of terrorism (rather than about a specific act of violence)
+-   Manipulated percentage of the threat of terrorism
 
--   Rank your satisfaction with life
+[Emotion]{.underline}
 
-[Encountering Refugees]{.underline}
+-   Anger/outrage
+-   Fear/anxiety
+-   Sadness
+-   General negative emotion
 
--   How many KM is the closest refugee reception center from your home?
--   How many refugees do you believe have settled in your municipality in the last year?
--   In the last month, how many refugees have you encountered in the following locations? (on the street, on public transport or in parks, in stores, in refugee reception centres or hostels, school, work)
+# Statistical Analysis
 
-[Attitudes Toward Refugees (national and local scale): using a scale of agree or disagree]{.underline}
-
--   Violence is sometimes the only means that citizens have to get the attention of German politicians 
--   Attitudes towards Muslims
--   Hostility against refugees is justified
--   Politicians should condemn attacks against refugees
--   Racist violence is defensible if it leads to fewer refugees settling in a town
--   Attacks against refugee homes are sometimes necessary to make garner the attention of politicians
--   Refugees are integrating well into Germany
--   German refugees should be entitled to German citizenship
--   The number of refugees should be reduced
--   Refugees are receiving more than non-immigrant Germans
--   Refugees should give up their culture to adopt that of Germany
--   Refugees are good for the economy
--   Refugees increase crime
--   Increased refugees increase the risk of terrorism
--   Additional refugees in your town will increase the influence of Islam (local)
--   Additional refugees in your town will be a challenge for local schools (local)
--   Additional refugees in your town will increase competition for housing (local)
--   Additional refugees in your town will change the way of life in your town (local)
-
-[Operational category]{.underline}
-
--   Experiment lists
--   Treatment lists
--   Outcome lists
--   Waves: out of 4
-
+In this paper we will replicate figure 2 and table2 of the orginal paper. Fortunately, the author has already compressed all the analysis into one coding file. We selected the corresponding part for each illustration. In terms of the analysis method, Pearson's correlation coefficient is used. According to the orignal paper, the manuscripts of the data they collected used various statistical method. For comparison purposes, each association is converted into a Pearson's correlation coefficient with the sampling variance. The author stressed that to "meaningfully compare and pool effect sizes, all correlations must also reflect the relation between terrorism and sociopolitical attitudes in the same direction."
 # Results
 
-```{r}
-#| label: fig-collection
-#| fig-cap: "Panel A displays the number of unique studies conducted over time, Panel B the number of manuscripts published over time, Panel C the frequency of used terrorism measures (in percentage), and Panel D the frequency of studied types of terrorism (in percentage)"
-#| echo: false
-#| message: false
-#| warning: false
-
-rm(list=ls())
-setwd("/cloud/project/raw/data") #set your directory
-options("scipen"=100, "digits"=8) #set digits
-getwd()
-
-ipak <- function(pkg){  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-if(length(new.pkg)) install.packages(new.pkg, dependencies = TRUE)
-sapply(pkg, require, character.only = TRUE)
-}
-
-packages <- c("readxl", "haven", "psych", "dplyr", "DescTools", "broom", "cowplot",
-              "pwr", "esc", "metaSEM", "metafor", "metaviz", "PerformanceAnalytics", 
-              "ggplot2", "ggpubr", "wesanderson", "stringr", "dotwhisker") 
-ipak(packages)
-
-dat <- read_excel("/cloud/project/raw/data/02-metaanalysis-data.xlsx", sheet = "Data", 
-                  col_names = TRUE, skip = 3)
-
-### dataframe of studies
-dat_studies <- dat[c(1:87)] #studies.
-dat_studies <- group_by(dat_studies, ID_RS) %>% slice(1)
-sum(dat_studies$ESS, na.rm = TRUE) #number of unique respondents
-
-### dataframe of reports
-dat_reports <- dat[c(1:87)] #reports/publications.
-dat_reports <- group_by(dat_reports, ID_R) %>% slice(1)
-
-
-### set wished layout settings
-mytheme <- theme(plot.title = element_text(face = "bold", size = (22), colour = "black"), 
-                 axis.text = element_text(size = (18), colour = "black"),
-                 axis.ticks.length = unit(0.5, "cm"),
-                 axis.title.y = element_text(size = (22), colour = "black"),
-                 axis.title.x = element_text(size = (22), colour = "white"))
-
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ # 
-###### A. DESCRIPTIVES: THE FIELD OF EMPIRICAL TERRORISM STUDIES ######
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ # 
-
-## mean ES's per report (reported in footnote 6)
-format(round(psych::describe(aggregate(Correlation ~ ID_R, data = dat, FUN = length)),3), nsmall=3)
-
-StudyYear <- ggplot(dat_studies, aes(x=StudyYear)) + 
-  geom_histogram(binwidth=1,
-                 color="#000000", fill="#939598") +
-  labs(x="to fill some space", y = "", title = "Year of Data Collection") +
-  scale_y_continuous(breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45)) +
-  scale_x_continuous(breaks = c(1985,1990,1995,2000,2005,2010, 2015,2020)) +
-  theme_classic() #histogram year of study 
-StudyYear <- StudyYear + geom_vline(xintercept=2001, linetype="dashed", size = 1) #add 9/11 line
-StudyYear <- StudyYear + geom_vline(xintercept=2004, linetype="dashed", size = 1) #add line
-StudyYear <- StudyYear + geom_vline(xintercept=2015, linetype="dashed", size = 1) #add ISIS line
-StudyYear <- StudyYear + geom_label(data = dat_studies, 
-                                    aes(x=2001, y=27, label = "9/11"),
-                                    size=8) #add 9/11 label
-StudyYear <- StudyYear + geom_label(data = dat_studies, 
-                                    aes(x=2007, y=35, label = "Madrid & \n Israel-Palestine"),
-                                    size=6) #add label
-StudyYear <- StudyYear + geom_label(data = dat_studies, 
-                                    aes(x=2014, y=44, label = "IS Attacks"),
-                                    size=8) #add ISIS label
-StudyYear <- StudyYear + mytheme
-
-# year of publication
-
-describe(dat_reports$Year) 
-# Figure 2B
-PubYear <- ggplot(dat_reports, aes(x=Year)) + 
-  geom_histogram(binwidth=1, 
-                 color="#000000", fill="#939598") +
-  labs(title ="Year of Publication", x = "to fill some space", y = "") +
-  scale_y_continuous(breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45)) +
-  scale_x_continuous(breaks = c(1985,1990,1995,2000,2005,2010, 2015,2020)) +
-  theme_classic() #histogram year of study 
-PubYear <- PubYear + geom_vline(xintercept=2001, linetype="dashed", size = 1) #add 9/11 line
-PubYear <- PubYear + geom_vline(xintercept=2015, linetype="dashed", size = 1) #add ISIS France line
-PubYear <- PubYear + geom_label(data = dat_reports,
-                                aes(x=2001, y=27, label = "9/11"),
-                                size=8) #add 9/11 label
-PubYear <- PubYear + geom_label(data = dat_reports, 
-                                aes(x=2014, y=44, label = "IS Attacks"),
-                                size=8) #add ISIS label
-PubYear <- PubYear + mytheme
-
-
-####### Terrorism measures, incl. cognitive and affective reactions ######
-
-# IV measurements used 
-summary(as.factor(dat$IV_Code))
-
-#wrangling
-dat$TerrorMeasure[dat$IV_Code==1] <- "Acts of violence"
-dat$TerrorMeasure[dat$IV_Code==2] <- "Acts of violence"
-dat$TerrorMeasure[dat$IV_Code==3] <- "Threat"
-dat$TerrorMeasure[dat$IV_Code==4] <- "Threat"
-dat$TerrorMeasure[dat$IV_Code==5] <- "Other"
-dat$TerrorMeasure[dat$IV_Code==6] <- "Reported exposure"
-dat$TerrorMeasure[dat$IV_Code==7] <- "Reported exposure"
-dat$TerrorMeasure[dat$IV_Code==8] <- "Reported exposure"
-dat$TerrorMeasure[dat$IV_Code==9] <- "Threat"
-dat$TerrorMeasure[dat$IV_Code==10] <- "Threat"
-dat$TerrorMeasure[dat$IV_Code==11] <- "Fear"
-dat$TerrorMeasure[dat$IV_Code==12] <- "Anger"
-dat$TerrorMeasure[dat$IV_Code==13] <- "Other"
-dat$TerrorMeasure[dat$IV_Code==14] <- "Other"
-dat$TerrorMeasure[dat$IV_Code==15] <- "Other"
-dat$TerrorMeasure[dat$IV_Code==16] <- "Other"
-
-dat$TerrorMeasure <- as.factor(dat$TerrorMeasure)
-table(dat$TerrorMeasure)
-prop.table(table(dat$TerrorMeasure))
-table(dat$ExactAttack) #which attacks are studied?
-prop.table(table(dat$ExactAttack)) #which attacks are studied?
-
-#visualization: Figure 2C
-tmdat <- data.frame(prop.table(table(dat$TerrorMeasure)))
-TerrorMeasures <- ggplot(tmdat, aes(x = reorder(Var1, -Freq), y = Freq)) +
-  geom_bar(stat="identity", width=0.7,
-           color="#000000", fill="#939598") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
-  scale_y_continuous(labels = scales::percent,
-                     limits = c(0,.6),
-                     breaks = c(0,.1,.2,.3,.4,.5,.6)) +
-  labs(title = "Terrorism Measures", x="", y = "") +
-  theme_classic() 
-TerrorMeasures <- TerrorMeasures + mytheme
-
-
-# type of terrorism
-summary(as.factor(dat$Type))
-
-#wrangling
-dat$TerrorType[dat$Type==0] <- "No ideology"
-dat$TerrorType[dat$Type==1] <- "Islamist"
-dat$TerrorType[dat$Type==2] <- "Extreme right"
-dat$TerrorType[dat$Type==3] <- "Other"
-dat$TerrorType[dat$Type==4] <- "Other"
-dat$TerrorType[dat$Type==5] <- "State terror"
-dat$TerrorType[dat$Type==6] <- "Other"
-dat$TerrorType <- as.factor(dat$TerrorType)
-summary(dat$TerrorType)
-prop.table(table(dat$TerrorType))
-
-#visualization: Figure 2D
-ttdat <- data.frame(prop.table(table(dat$TerrorType)))
-TerrorType <- ggplot(ttdat, aes(x = reorder(Var1, -Freq), y = Freq)) +
-  geom_bar(stat="identity", width=0.7,
-           color="#000000", fill="#939598") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
-  scale_y_continuous(labels = scales::percent,
-                     breaks = c(0,.1,.2,.3,.4,.5,.6)) +
-  labs(title = "Type of Terrorism", x = "", y = "") +
-  theme_classic() 
-TerrorType <- TerrorType + mytheme
-
-
-
-jpeg("Figures/Fig2.jpeg", width = 15, height = 16, units = 'in', res = 300)
-ggarrange(StudyYear, PubYear, 
-          TerrorMeasures, TerrorType,
-          labels = c("(A)", "(B)", "(C)", "(D)"),
-          font.label = list(size = 22, color = "black"),
-          ncol = 2, nrow = 2) #arrange all plots
-dev.off() #safe picture in high resolution.
-```
 
 As depicted in @fig-collection(A) and (B), scholarly interest in exploring the link between terrorism and public attitudes notably began following the 9/11 attacks, and received further impetus following the 2015–16 Islamic State (IS) attacks. Put differently, the figures imply that this research domain is significantly influenced by specific events.
 
