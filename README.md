@@ -1,4 +1,4 @@
-# Terrorism-Political-Attitude
+# Analysis on Effects of Terrorism on Political Attitude
 
 
 ## Overview
