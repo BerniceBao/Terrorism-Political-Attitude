@@ -2,7 +2,7 @@
 
 
 ## Overview
-
+The code in this repository is used for the construction of analysis and associated paper  [**`How Terrorism Does (and Does Not) Affect Citizens’ Political Attitudes: A Meta-Analysis`**](https://doi.org/10.1111/ajps.12692), containing data, `R` scripts, and a final `PDF` report.
 
 
 ## File Structure
