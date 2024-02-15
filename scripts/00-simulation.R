@@ -16,7 +16,7 @@ Author <- sample(c('Aber et al.','Abrams et al.', 'Aizpurua et al..',
                    'Aytac & Carkoglu'), size = 100, replace = TRUE)
 
 
-year <- sample(c(1989,2019), size = 100, replace = TRUE)
+year <- sample(c(1989:2019), size = 100, replace = TRUE)
 
 TypeReport <- sample(c(x = 1:4), size = 100, replace = TRUE)
 
@@ -42,7 +42,7 @@ TypeStudy <- sample(c(x = 1:4), size = 100, replace = TRUE)
 
 Country <- sample(c('US', 'Israel', 'Spain', 'Norway', 'Belgium', 'France', 'Germany', 'Turkey'), size = 100, replace = TRUE)
 
-StudyYear <- sample(c(1988,2019), size = 100, replace = TRUE)
+StudyYear <- sample(c(1988:2019), size = 100, replace = TRUE)
 
 SampleSize <- sample(c(x = 99:1500), size = 100, replace = TRUE)
 
