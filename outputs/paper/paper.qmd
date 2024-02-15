@@ -154,7 +154,7 @@ library(dotwhisker)
 
 
 
-dat <- read_excel("/cloud/project/raw/data/02-metaanalysis-data.xlsx", sheet = "Data", 
+dat <- read_excel("/cloud/project/inputs/data/02-metaanalysis-data.xlsx", sheet = "Data", 
                   col_names = TRUE, skip = 3)
 
 ### dataframe of studies
@@ -304,11 +304,10 @@ ggarrange(StudyYear, PubYear,
           labels = c("(A)", "(B)", "(C)", "(D)"),
           font.label = list(size = 10, color = "black"),
           widths = 10,
-          heights = 10,
+          heights = 15,
           ncol = 2, nrow = 2) #arrange all plots
 
 ```
-
 
 As depicted in @fig-collection(A) and (B), scholarly interest in exploring the link between terrorism and public attitudes notably began following the 9/11 attacks, and received further impetus following the 2015–16 Islamic State (IS) attacks. Put differently, the figures imply that this research domain is significantly influenced by specific events.
 
@@ -339,7 +338,8 @@ knitr::kable(
          j = c(126,144,72),
          Zr = c(0.126,0.132,0.090),
          LBCI = c("[0.094;0.159]","[0.108;0.156]","[0.055;0.127]")
-  )
+  ),
+  caption = "Relationship between Terrorism and Political Attitudes"
 )
 ```
 
