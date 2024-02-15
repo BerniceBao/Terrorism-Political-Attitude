@@ -309,7 +309,7 @@ ggarrange(StudyYear, PubYear,
 
 ```
 
-As depicted in @fig-collection(A) and (B), scholarly interest in exploring the link between terrorism and public attitudes notably began following the 9/11 attacks, and received further impetus following the 2015–16 Islamic State (IS) attacks. Put differently, the figures imply that this research domain is significantly influenced by specific events.
+As depicted in @fig-collection(A) and (B), scholarly interest in exploring the link between terrorism and public attitudes notably began following the 9/11 attacks, and received further impetus following the 2015–16 Islamic State (IS) attacks. After terrorist attacks, the number of studies reaches its peak level and the number of manuscripts published has increased sharply in the following years.Put differently, the figures imply that this research domain is significantly influenced by specific events.
 
 
 Moreover, from 1985 to 2020, researchers have employed diverse methodologies to measure exposure to terrorism (refer to @fig-collection(C)). Some studies exposed participants to news articles or video clips depicting specific acts of violence (e.g., 9/11), while in other cases, exposure occurred naturally when surveys coincided with terror attacks (527 data points of acts of violence , as 30%). Additionally, studies have assessed or manipulated individuals' perceptions of terrorism threats (threat of violence: 520 data points as 30%), examined affective responses such as fear (146 data points) and anger (111 data points), and investigated self-reported exposure to terrorism through personal experiences, relatives' experiences, or media coverage (self-reported exposure: 184 data points).
@@ -317,13 +317,17 @@ Moreover, from 1985 to 2020, researchers have employed diverse methodologies to 
 The most frequently studied acts of violence are—perhaps unsurprisingly—9/11, the Israeli-Palestinian conflict, and the 2015 series of IS attacks in Paris. Consequently, regarding the ideology behind the violence (@fig-collection(D)), the vast majority of effect sizes quantify the effects of or relationship with Islamist terrorism (1,064 data points, 61%), following by no ideology terrorism, whereas the share of information on how the public reacts to extreme-right terror is remarkably low (35 data points, 2%).
 
 
+All Fisher's Z transformed correlation coefficients were used as inputs to a random-effects, three-level meta-analysis. A three-level meta-analysis assumes that observed effect sizes differ because of (1) sampling variance, (2) variance between manuscripts, and (3) variance between the correlations from within the same manuscript[@main_paper]. Therefore, the author estimated the following model:
+$$
+y_{ij} = \beta_0 + u_{(2)j} + u_{(3)j} + e_{ij}
+$$
+where any observed effect size in manuscript j ($y_{ij}$) is assumed to be equal to an overall population effect size ($\beta_0$), plus a random deviation of the mean population effect size in manuscript j from this overall population effect size ($u_{(3)j}$), plus a random deviation of the i-th population effect size in manuscript j from the mean effect in this particular manuscript ($u_{(2)ij}$), plus a random error deviation of the observed effect size from the population effect due to sampling fluctuation ($e_{ij}$)[@main_paper]. In plain language, a three-level approach allows me to consolidate an overall effect size using all 1,733 effect sizes (while properly accounting for clustering in the data), to study heterogeneity in effect sizes both between and within manuscripts, and to explore moderator variables that explain part of this variation between and within manuscripts[@main_paper].
 
-
-Table 1 demonstrates that...
+The extent of terrorism's association with outgroup hostility, political conservatism, or rally-'round-the-flag responses can be observed in the estimated overall correlations ($Z_r$) displayed in @table. Table 2 displays the estimated overall correlations ($Z_r$). The correlations in this table are Fisher's Z-transformed, while those reported in the text below are back-transformed to their normal correlation scale (denoted as $\widehat{\rho}$) for ease of interpretation[@main_paper]. 
 
 ```{r}
 #| label: table
-#| tbl-cap: "0000000000000000000"
+#| tbl-cap: "Note. k = number of effect sizes. j = number of manuscripts. Zr = Overall Fisher's Z correlation coefficients. LBCI = Likelihood-Based Confidence Interval. The Zr estimates are considered significant when the LBCIs do not include zero."
 #| echo: false
 #| message: false
 #| warning: false
@@ -340,8 +344,11 @@ knitr::kable(
          LBCI = c("[0.094;0.159]","[0.108;0.156]","[0.055;0.127]")
   ),
   caption = "Relationship between Terrorism and Political Attitudes"
-)
+)#These numbers are the results from the file "Table2_calculation.qmd"
 ```
+
+@table shows that terrorism is significantly associated with outgroup hostility ($\widehat{\rho}$ = 0.126), political conservatism($\widehat{\rho}$ = 0.131), and, to a lesser extent, rally-‘round-the-flag effects ($\widehat{\rho}$ = 0.090). @main_paper indicates that it is important to note that all associations are relatively small, both following conventional standards and compared to other meta-analyses in the social sciences.
+
 
 
 
