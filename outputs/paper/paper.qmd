@@ -1,5 +1,5 @@
 ---
-title: "Start with the literature: assessthe empirical evidence for the relationship between ter-rorism and political attitudes"
+title: "Start with the literature: assess the empirical evidence for the relationship between terrorism and political attitudes"
 author: "Bernice(Yixuan) Bao, Zheng(Zeb) Yang, Jingcheng Yang"
 thanks: "Code and data are available at: https://github.com/BerniceBao/Terrorism-Political-Attitude ; Replication on Social Science Reproduction platform available at: https://doi.org/10.48152/ssrp-2vrs-r095"
 date: "February 13, 2024"
