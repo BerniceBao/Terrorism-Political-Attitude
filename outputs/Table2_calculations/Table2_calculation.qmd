@@ -1,0 +1,108 @@
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ # 
+######## B. META-ANALYSIS: for each of the hypotheses ######## 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ # 
+
+# Data preparation: Split dataset in 3 based on outcome type
+# 1) outgroup dataset
+dat_outgroup <- dat[dat$PA_Category == 10 |
+                      dat$PA_Category == 99, ]
+length(unique(dat_outgroup$ID_R))#number of manuscripts (N_j)
+# 2) conservative shift dataset
+dat_conservatism <- dat[dat$PA_Category == 5 |
+                          dat$PA_Category == 6 |
+                          dat$PA_Category == 7 |
+                          dat$PA_Category == 8 |
+                          dat$PA_Category == 9 |
+                          dat$PA_Category == 11, ]
+length(unique(dat_conservatism$ID_R))#number of manuscripts (N_j)
+# 3) rally-around-the-flag dataset
+dat_rally <- dat[dat$PA_Category == 1 |
+                   dat$PA_Category == 2 |
+                   dat$PA_Category == 3 |
+                   dat$PA_Category == 4, ]
+length(unique(dat_rally$ID_R))#number of manuscripts (N_j)
+# double check (total number of effect sizes; N_k)
+count(dat_outgroup) + count(dat_conservatism) + count(dat_rally)
+
+
+##### 1. Fit empty 3-level model using the meta3 function #####
+
+### To replicate Table 2: call summary() function for each of outcome cluster
+      ## coef(model...)[1] = Fishers' Z correlation coefficients (Zr)
+### To replicate the correlation coefficients mentioned in the text, 
+### call the FisherZinv() function for each outcome cluster.
+
+# Outgroup hostility (Table 2)
+set.seed(1234)
+model_og_LBCI <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
+                       data = dat_outgroup, 
+                       I2=c("I2q", "ICC"),
+                       intervals.type = "LB",
+                       model.name = "3 level outgroup LB")
+summary(model_og_LBCI)#results presented in Table 2, as well as
+#throughout the Supplementary Information (esp. Table B.3).
+FisherZInv(coef(model_og_LBCI)[1])#rho reported in text
+
+
+# Conservative shift (Table 2)
+set.seed(1234)
+model_cs_LBCI <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
+                       data = dat_conservatism, 
+                       I2=c("I2q", "ICC"),
+                       intervals.type = "LB",
+                       model.name = "3 level conservatism LB")
+summary(model_cs_LBCI)#results presented in Table 2, as well as
+#throughout the Supplementary Information (esp. Table B.3).
+FisherZInv(coef(model_cs_LBCI)[1])#rho reported in text
+
+
+# Rally-around-the-flag (Table 2)
+set.seed(1234)
+model_rf_LBCI <- meta3L(y=Fisher, v=Variance_F, cluster=ID_R,
+                       data = dat_rally, 
+                       I2=c("I2q", "ICC"),
+                       intervals.type = "LB",
+                       model.name = "3 level rally LB")
+summary(model_rf_LBCI)#results presented in Table 2, as well as
+#throughout the Supplementary Information (esp. Table B.3).
+FisherZInv(coef(model_rf_LBCI)[1])#rho reported in text
+
+
+## Substantive interpretation --------------------------------------------------
+## i.e., comparison to 2016 ANES Feeling Thermometers
+anes2016 <- read_dta(file = "/cloud/project/raw/data/anes_timeseries_2016.dta")
+#select variables to summarize
+anes2016 <- anes2016 %>%
+  select(immterm = V162313, 
+         reptherm = V161096) 
+#format(round(psych::describe(anes2016),3), nsmall=3): counts NA's
+#recode NA's (!)
+anes2016$immterm <- ifelse(anes2016$immterm %in% -9:-1, NA, 
+                           identity(anes2016$immterm)) 
+anes2016$reptherm <- ifelse(anes2016$reptherm %in% -99:-1, NA, 
+                            identity(anes2016$reptherm))
+#find correct SDs to use in calculations based on Paluck et al. (2021)
+format(round(psych::describe(anes2016),3), nsmall=3) 
+#the effect of terror on the feeling therm. toward immigrants. 6.9
+cohens_d(r = FisherZInv(coef(model_og_LBCI)[1]))*27.285 
+#the effect of terror on the feeling therm. toward Rep. party: 7.2
+cohens_d(r = FisherZInv(coef(model_cs_LBCI)[1]))*27.330 
+
+
+## Practical implication -------------------------------------------------------
+## i.e., what sample size is recommended based on this meta-analysis?
+# Outgroup hostility
+pwr.r.test(r = FisherZInv(coef(model_og_LBCI)[1]), sig.level = 0.05, power = 0.8) 
+# Conservative shift
+pwr.r.test(r = FisherZInv(coef(model_cs_LBCI)[1]), sig.level = 0.05, power = 0.8) 
+# Rally-around-the-flag
+pwr.r.test(r = FisherZInv(coef(model_rf_LBCI)[1]), sig.level = 0.05, power = 0.8) 
+
+```
+
