@@ -118,7 +118,7 @@ In order to better present our replication of the results, The following are mea
 
 # Statistical Analysis
 
-In this paper we will replicate figure 2 and table2 of the original paper. Fortunately, the author has already compressed all the analysis into one coding file. We selected the corresponding part for each illustration. In terms of the analysis method, Pearson's correlation coefficient is used. According to the original paper, the manuscripts of the data they collected used various statistical method. For comparison purposes, each association is converted into a Pearson's correlation coefficient with the sampling variance. The author stressed that to "meaningfully compare and pool effect sizes, all correlations must also reflect the relation between terrorism and sociopolitical attitudes in the same direction."[@main_paper]
+In this paper we will replicate figure 2 and table 2 of the original paper. Fortunately, the author has already compressed all the analysis into one coding file. We selected the corresponding part for each illustration. In terms of the analysis method, Pearson's correlation coefficient is used. According to the original paper, the manuscripts of the data they collected used various statistical method. For comparison purposes, each association is converted into a Pearson's correlation coefficient with the sampling variance. The author stressed that to "meaningfully compare and pool effect sizes, all correlations must also reflect the relation between terrorism and sociopolitical attitudes in the same direction."[@main_paper]
 
 
 # Results
@@ -322,10 +322,10 @@ y_{ij} = \beta_0 + u_{(2)j} + u_{(3)j} + e_{ij}
 $$
 where any observed effect size in manuscript j ($y_{ij}$) is assumed to be equal to an overall population effect size ($\beta_0$), plus a random deviation of the mean population effect size in manuscript j from this overall population effect size ($u_{(3)j}$), plus a random deviation of the i-th population effect size in manuscript j from the mean effect in this particular manuscript ($u_{(2)ij}$), plus a random error deviation of the observed effect size from the population effect due to sampling fluctuation ($e_{ij}$)[@main_paper]. In plain language, a three-level approach allows me to consolidate an overall effect size using all 1,733 effect sizes (while properly accounting for clustering in the data), to study heterogeneity in effect sizes both between and within manuscripts, and to explore moderator variables that explain part of this variation between and within manuscripts[@main_paper].
 
-The extent of terrorism's association with outgroup hostility, political conservatism, or rally-'round-the-flag responses can be observed in the estimated overall correlations ($Z_r$) displayed in @table. Table 2 displays the estimated overall correlations ($Z_r$). The correlations in this table are Fisher's Z-transformed, while those reported in the text below are back-transformed to their normal correlation scale (denoted as $\widehat{\rho}$) for ease of interpretation[@main_paper]. 
+The extent of terrorism's association with outgroup hostility, political conservatism, or rally-'round-the-flag responses can be observed in the estimated overall correlations ($Z_r$) displayed in @table-t. @table-t displays the estimated overall correlations ($Z_r$). The correlations in this table are Fisher's Z-transformed, while those reported in the text below are back-transformed to their normal correlation scale (denoted as $\widehat{\rho}$) for ease of interpretation[@main_paper]. 
 
 ```{r}
-#| label: table
+#| label: table-t
 #| tbl-cap: "Note. k = number of effect sizes. j = number of manuscripts. Zr = Overall Fisher's Z correlation coefficients. LBCI = Likelihood-Based Confidence Interval. The Zr estimates are considered significant when the LBCIs do not include zero."
 #| echo: false
 #| message: false
@@ -346,7 +346,7 @@ knitr::kable(
 )#These numbers are the results from the file "Table2_calculation.qmd"
 ```
 
-@table shows that terrorism is significantly associated with outgroup hostility ($\widehat{\rho}$ = 0.126), political conservatism($\widehat{\rho}$ = 0.131), and, to a lesser extent, rally-‘round-the-flag effects ($\widehat{\rho}$ = 0.090). @main_paper indicates that it is important to note that all associations are relatively small, both following conventional standards and compared to other meta-analyses in the social sciences.
+@table-t shows that terrorism is significantly associated with outgroup hostility ($\widehat{\rho}$ = 0.126), political conservatism($\widehat{\rho}$ = 0.131), and, to a lesser extent, rally-‘round-the-flag effects ($\widehat{\rho}$ = 0.090). @main_paper indicates that it is important to note that all associations are relatively small, both following conventional standards and compared to other meta-analyses in the social sciences.
 
 
 
